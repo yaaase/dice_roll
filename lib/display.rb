@@ -5,6 +5,7 @@ module Display
     |   0   |
     |       |
     |_______|
+
   END
 
   TWO = <<-END
@@ -13,6 +14,7 @@ module Display
     |       |
     |     0 |
     |_______|
+
   END
 
   THREE = <<-END
@@ -21,6 +23,7 @@ module Display
     |   0   |
     |     0 |
     |_______|
+
   END
 
   FOUR = <<-END
@@ -29,6 +32,7 @@ module Display
     |       |
     | 0   0 |
     |_______|
+
   END
 
   FIVE = <<-END
@@ -37,6 +41,7 @@ module Display
     |   0   |
     | 0   0 |
     |_______|
+
   END
 
   SIX = <<-END
@@ -45,6 +50,7 @@ module Display
     | 0   0 |
     | 0   0 |
     |_______|
+
   END
 
   HASH = {
@@ -60,12 +66,14 @@ module Display
     ...*...*...*...*...*...*...*...*...*...*
     ::::::::::: TAKE A SHOT!!!!! :::::::::::
     ...*...*...*...*...*...*...*...*...*...*
+
   END
 
   POUND_BEER = <<-END
     ...*...*...*...*...*...*...*...*...*...*
     ::::::::: POUND YOUR BEER!!!!! :::::::::
     ...*...*...*...*...*...*...*...*...*...*
+
   END
 end
 
