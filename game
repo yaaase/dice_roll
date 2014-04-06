@@ -12,17 +12,13 @@ def play_sound(sound)
 end
 
 def special_rolls(rolls)
-  result = nil
-  if rolls.uniq.size == 1
-    result = rolls.first
-  end
+  result = rolls.uniq.size == 1 ? rolls.first : nil
 
-  if result
-    case result
-    when 1 then say_snake_eyes
-    when 6 then say_double_sixes
-    else say_check_my_dubs
-    end
+  case result
+  when nil then nil
+  when 1 then say_snake_eyes
+  when 6 then say_double_sixes
+  else say_check_my_dubs
   end
 end
 
