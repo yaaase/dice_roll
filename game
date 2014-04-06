@@ -30,14 +30,12 @@ def maybe_drink!
   x = rand(50)
   if x == 0
     play_sound(Sounds::TAKE_SHOT)
-    puts(Display::TAKE_SHOT)
+    puts(Display::TAKE_SHOT + "\n")
     say_take_a_shot
-    puts
   elsif x == 49
     play_sound(Sounds::POUND_BEER)
-    puts(Display::POUND_BEER)
+    puts(Display::POUND_BEER + "\n")
     say_pound_your_beer
-    puts
   end
 end
 
@@ -60,8 +58,7 @@ loop do
   number_of_rolls.times { rolls << dice.roll }
 
   rolls.each do |roll|
-    puts(Display::HASH[roll])
-    puts
+    puts(Display::HASH[roll] + "\n")
   end
 
   puts("Total score: #{ rolls.inject(&:+) }")
