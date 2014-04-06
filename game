@@ -18,6 +18,21 @@ def special_rolls(result)
   end
 end
 
+def maybe_drink!
+  x = rand(50)
+  if x == 0
+    play_sound(Sounds::TAKE_SHOT)
+    puts(Display::TAKE_SHOT)
+    say_take_a_shot
+    puts
+  elsif x == 49
+    play_sound(Sounds::POUND_BEER)
+    puts(Display::POUND_BEER)
+    say_pound_your_beer
+    puts
+  end
+end
+
 system('clear')
 dice = Dice.new(1)
 puts('Press enter to roll the dice!')
@@ -30,12 +45,7 @@ loop do
   rolls = [dice.roll, dice.roll]
   result = rolls.inject(&:+)
 
-  if rand(50) == 0
-    play_sound(Sounds::PARTY_HORN)
-    puts(Display::SHOT)
-    say_take_a_shot
-    puts
-  end
+  maybe_drink!
 
   puts(Display::HASH[rolls.first])
   puts
