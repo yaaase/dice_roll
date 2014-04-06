@@ -5,6 +5,11 @@ require_relative 'lib/display'
 require_relative 'lib/sounds'
 require_relative 'lib/say'
 
+unless ARGV[0]
+  puts("Usage: './game start x' where 'x' is the number of dice to be rolled")
+  exit(0)
+end
+
 include Say
 
 def play_sound(sound)
@@ -35,7 +40,7 @@ def maybe_drink!
   end
 end
 
-number_of_rolls = ARGV[0] ? ARGV[0].to_i : 2
+number_of_rolls = ARGV[1] ? ARGV[1].to_i : 2
 raise 'Type a fucking number, moron' if number_of_rolls == 0
 
 system('clear')
@@ -44,22 +49,24 @@ puts("Welcome to DICE ROLL!\n\n")
 puts('Press enter to roll the dice!')
 STDIN.gets
 
-loop do
-  system('clear')
-  play_sound(Sounds::DICE_ROLL)
+if ARGV[0] == 'start'
+  loop do
+    system('clear')
+    play_sound(Sounds::DICE_ROLL)
 
-  maybe_drink!
+    maybe_drink!
 
-  rolls = []
-  number_of_rolls.times { rolls << dice.roll }
+    rolls = []
+    number_of_rolls.times { rolls << dice.roll }
 
-  rolls.each { |r| puts(Display::HASH[r]) }
+    rolls.each { |r| puts(Display::HASH[r]) }
 
-  puts("Total score: #{ rolls.inject(&:+) }")
+    puts("Total score: #{ rolls.inject(&:+) }")
 
-  special_rolls(rolls) if number_of_rolls == 2
+    special_rolls(rolls) if number_of_rolls == 2
 
-  puts('Press enter to roll the dice!')
-  STDIN.gets
+    puts('Press enter to roll the dice!')
+    STDIN.gets
+  end
 end
 
