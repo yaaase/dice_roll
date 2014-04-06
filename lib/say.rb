@@ -16,4 +16,8 @@ module Say
     system("say -v Agnes 'pound your fucking beer'")
   end
 
+  def say_check_my_dubs
+    system("say -v Junior 'check out my dubs'")
+  end
+
 end

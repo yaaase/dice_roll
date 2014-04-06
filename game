@@ -11,10 +11,18 @@ def play_sound(sound)
   system("afplay #{sound}")
 end
 
-def special_rolls(result)
-  case result
-  when 2 then say_snake_eyes
-  when 12 then say_double_sixes
+def special_rolls(rolls)
+  result = nil
+  if rolls.uniq.size == 1
+    result = rolls.first
+  end
+
+  if result
+    case result
+    when 1 then say_snake_eyes
+    when 6 then say_double_sixes
+    else say_check_my_dubs
+    end
   end
 end
 
@@ -35,6 +43,7 @@ end
 
 system('clear')
 dice = Dice.new(1)
+puts("Welcome to DICE ROLL!\n\n")
 puts('Press enter to roll the dice!')
 gets
 
@@ -43,7 +52,6 @@ loop do
   play_sound(Sounds::DICE_ROLL)
 
   rolls = [dice.roll, dice.roll]
-  result = rolls.inject(&:+)
 
   maybe_drink!
 
@@ -51,9 +59,9 @@ loop do
   puts
   puts(Display::HASH[rolls.last])
   puts
-  puts("Total score: #{ result }")
+  puts("Total score: #{ rolls.inject(&:+) }")
 
-  special_rolls(result)
+  special_rolls(rolls)
 
   puts('Press enter to roll the dice!')
   gets
