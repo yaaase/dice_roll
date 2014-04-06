@@ -5,11 +5,6 @@ require_relative 'lib/display'
 require_relative 'lib/sounds'
 require_relative 'lib/say'
 
-unless ARGV[0]
-  puts("Usage: './game start x' where 'x' is the number of dice to be rolled")
-  exit(0)
-end
-
 include Say
 
 def play_sound(sound)
@@ -38,6 +33,11 @@ def maybe_drink!
     puts(Display::POUND_BEER)
     say_pound_your_beer
   end
+end
+
+unless ARGV[0]
+  puts("Usage: './game start x' where 'x' is the number of dice to be rolled")
+  exit(0)
 end
 
 qty = ARGV[1] ? ARGV[1].to_i : 2
