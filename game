@@ -40,8 +40,8 @@ def maybe_drink!
   end
 end
 
-number_of_rolls = ARGV[1] ? ARGV[1].to_i : 2
-raise 'Type a fucking number, moron' if number_of_rolls == 0
+qty = ARGV[1] ? ARGV[1].to_i : 2
+raise 'Type a fucking number, moron' if qty == 0
 
 system('clear')
 dice = Dice.new(1)
@@ -56,13 +56,13 @@ if ARGV[0] == 'start'
 
     maybe_drink!
 
-    rolls = (1..number_of_rolls).inject([]) { |rs, _| rs << dice.roll }
+    rolls = (1..qty).inject([]) { |rs, _| rs << dice.roll }
 
     rolls.each { |r| puts(Display::HASH[r]) }
 
     puts("Total score: #{ rolls.inject(&:+) }")
 
-    special_rolls(rolls) if number_of_rolls == 2
+    special_rolls(rolls) if qty == 2
 
     puts('Press enter to roll the dice!')
     STDIN.gets
