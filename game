@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby -w
+
+require_relative 'lib/dice'
+require_relative 'lib/display'
+require_relative 'lib/sounds'
+
+def play_sound(sound)
+  system("afplay #{sound}")
+end
+
+system('clear')
+dice = Dice.new(1)
+puts('Press enter to roll the dice!')
+gets
+
+loop do
+  system('clear')
+  play_sound(Sounds::DICE_ROLL)
+
+  rolls = [dice.roll, dice.roll]
+
+  if rand(50) == 0
+    play_sound(Sounds::PARTY_HORN)
+    puts(Display::SHOT)
+    system("say -v Victoria 'take a fucking shot'")
+    puts
+  end
+
+  puts(Display::HASH[rolls.first])
+  puts
+  puts(Display::HASH[rolls.last])
+  puts
+  puts("Total score: #{ rolls.inject(&:+) }")
+
+  puts('Press enter to roll the dice!')
+  gets
+end
+
