@@ -56,8 +56,7 @@ if ARGV[0] == 'start'
 
     maybe_drink!
 
-    rolls = []
-    number_of_rolls.times { rolls << dice.roll }
+    rolls = (1..number_of_rolls).inject([]) { |rs, _| rs << dice.roll }
 
     rolls.each { |r| puts(Display::HASH[r]) }
 
