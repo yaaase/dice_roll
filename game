@@ -41,29 +41,34 @@ def maybe_drink!
   end
 end
 
+number_of_rolls = ARGV[0].to_i
+number_of_rolls = 2 if number_of_rolls == 0
+
 system('clear')
 dice = Dice.new(1)
 puts("Welcome to DICE ROLL!\n\n")
 puts('Press enter to roll the dice!')
-gets
+STDIN.gets
 
 loop do
   system('clear')
   play_sound(Sounds::DICE_ROLL)
 
-  rolls = [dice.roll, dice.roll]
-
   maybe_drink!
 
-  puts(Display::HASH[rolls.first])
-  puts
-  puts(Display::HASH[rolls.last])
-  puts
+  rolls = []
+  number_of_rolls.times { rolls << dice.roll }
+
+  rolls.each do |roll|
+    puts(Display::HASH[roll])
+    puts
+  end
+
   puts("Total score: #{ rolls.inject(&:+) }")
 
-  special_rolls(rolls)
+  special_rolls(rolls) if number_of_rolls == 2
 
   puts('Press enter to roll the dice!')
-  gets
+  STDIN.gets
 end
 
