@@ -3,9 +3,19 @@
 require_relative 'lib/dice'
 require_relative 'lib/display'
 require_relative 'lib/sounds'
+require_relative 'lib/say'
+
+include Say
 
 def play_sound(sound)
   system("afplay #{sound}")
+end
+
+def special_rolls(result)
+  case result
+  when 2 then say_snake_eyes
+  when 12 then say_double_sixes
+  end
 end
 
 system('clear')
@@ -18,11 +28,12 @@ loop do
   play_sound(Sounds::DICE_ROLL)
 
   rolls = [dice.roll, dice.roll]
+  result = rolls.inject(&:+)
 
   if rand(50) == 0
     play_sound(Sounds::PARTY_HORN)
     puts(Display::SHOT)
-    system("say -v Victoria 'take a fucking shot'")
+    say_take_a_shot
     puts
   end
 
@@ -30,7 +41,9 @@ loop do
   puts
   puts(Display::HASH[rolls.last])
   puts
-  puts("Total score: #{ rolls.inject(&:+) }")
+  puts("Total score: #{ result }")
+
+  special_rolls(result)
 
   puts('Press enter to roll the dice!')
   gets
