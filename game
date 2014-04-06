@@ -41,8 +41,7 @@ def maybe_drink!
   end
 end
 
-number_of_rolls = ARGV[0].to_i
-number_of_rolls = 2 if number_of_rolls == 0
+number_of_rolls = ARGV[0] ? ARGV[0].to_i : 2
 
 system('clear')
 dice = Dice.new(1)
