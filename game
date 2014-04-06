@@ -42,6 +42,7 @@ def maybe_drink!
 end
 
 number_of_rolls = ARGV[0] ? ARGV[0].to_i : 2
+raise 'Type a fucking number, moron' if number_of_rolls == 0
 
 system('clear')
 dice = Dice.new(1)
