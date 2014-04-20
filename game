@@ -35,21 +35,16 @@ def maybe_drink!
   end
 end
 
-unless ARGV[0]
-  puts("Usage: './game start x' where 'x' is the number of dice to be rolled")
-  exit(0)
-end
-
 qty = ARGV[1] ? ARGV[1].to_i : 2
 raise 'Type a fucking number, moron' if qty == 0
 
-system('clear')
-dice = Dice.new(1)
-puts("Welcome to DICE ROLL!\n\n")
-puts('Press enter to roll the dice!')
-STDIN.gets
-
 if ARGV[0] == 'start'
+  system('clear')
+  dice = Dice.new(1)
+  puts("Welcome to DICE ROLL!\n\n")
+  puts('Press enter to roll the dice!')
+  STDIN.gets
+
   loop do
     system('clear')
     play_sound(Sounds::DICE_ROLL)
@@ -67,5 +62,8 @@ if ARGV[0] == 'start'
     puts('Press enter to roll the dice!')
     STDIN.gets
   end
+else
+  puts("Usage: './game start x' where 'x' is the number of dice to be rolled")
+  exit(0)
 end
 
