@@ -5,7 +5,7 @@ describe Dice do
     let(:d) { Dice.new(1) }
 
     it "rolls a random number 1-6" do
-      (1..6).include?(d.roll).should be_true
+      expect((1..6).include?(d.roll)).to eq(true)
     end
   end
 
@@ -13,7 +13,7 @@ describe Dice do
     let(:d) { Dice.new(2) }
 
     it "rolls a random number 2-12" do
-      (2..12).include?(d.roll).should be_true
+      expect((2..12).include?(d.roll)).to eq(true)
     end
   end
 end
